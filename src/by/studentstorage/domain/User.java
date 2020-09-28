@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class User {
     private long id;
+    private String login;
     private String name;
     private String surname;
     private String email;
@@ -13,8 +14,9 @@ public class User {
     public User() {
     }
 
-    public User(long id, String name, String surname, String email, String password, Role role) {
+    public User(long id, String login, String name, String surname, String email, String password, Role role) {
         this.id = id;
+        this.login = login;
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -22,7 +24,8 @@ public class User {
         this.role = role;
     }
 
-    public User(String name, String surname, String email, String password, Role role) {
+    public User(String name, String login, String surname, String email, String password, Role role) {
+        this.login = login;
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -34,6 +37,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", login='" + login + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
@@ -52,17 +56,20 @@ public class User {
                 role == user.role;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, surname, role);
-    }
-
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getName() {
