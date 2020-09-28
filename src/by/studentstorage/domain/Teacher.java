@@ -7,15 +7,15 @@ public class Teacher extends User{
     private Position position;
     private String department;
 
-    public Teacher(String name, String surname, String email, String password, Role role, Rank rank, Position position, String department) {
-        super(name, surname, email, password, role);
+    public Teacher(String name, String login, String surname, String email, String password, Role role, Rank rank, Position position, String department) {
+        super(name, login, surname, email, password, role);
         this.rank = rank;
         this.position = position;
         this.department = department;
     }
 
-    public Teacher(long id, String name, String surname, String email, String password, Role role, Rank rank, Position position, String department) {
-        super(id, name, surname, email, password, role);
+    public Teacher(long id, String login, String name, String surname, String email, String password, Role role, Rank rank, Position position, String department) {
+        super(id, login, name, surname, email, password, role);
         this.rank = rank;
         this.position = position;
         this.department = department;

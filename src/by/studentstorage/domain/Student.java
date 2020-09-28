@@ -18,8 +18,8 @@ public class Student extends User{
     private EducationForm educationForm;
     private boolean warrior;
 
-    public Student(String name, String surname, String email, String password, Role role, String address, City city, String nationality, Country country, Phone phone, GroupLayout.Group group, Faculty faculty, int courseNumber, Date bornDate, EducationForm educationForm, boolean warrior) {
-        super(name, surname, email, password, role);
+    public Student(String name, String login, String surname, String email, String password, Role role, String address, City city, String nationality, Country country, Phone phone, GroupLayout.Group group, Faculty faculty, int courseNumber, Date bornDate, EducationForm educationForm, boolean warrior) {
+        super(name, login, surname, email, password, role);
         this.address = address;
         this.city = city;
         this.nationality = nationality;
@@ -33,8 +33,8 @@ public class Student extends User{
         this.warrior = warrior;
     }
 
-    public Student(long id, String name, String surname, String email, String password, Role role, String address, City city, String nationality, Country country, Phone phone, GroupLayout.Group group, Faculty faculty, int courseNumber, Date bornDate, EducationForm educationForm, boolean warrior) {
-        super(id, name, surname, email, password, role);
+    public Student(long id, String login, String name, String surname, String email, String password, Role role, String address, City city, String nationality, Country country, Phone phone, GroupLayout.Group group, Faculty faculty, int courseNumber, Date bornDate, EducationForm educationForm, boolean warrior) {
+        super(id, login, name, surname, email, password, role);
         this.address = address;
         this.city = city;
         this.nationality = nationality;
