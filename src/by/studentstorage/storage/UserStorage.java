@@ -24,4 +24,5 @@ public interface UserStorage {
     boolean contains(User user);
     boolean contains(long id);
     boolean contains(String login);
+    boolean contains(Role role);
 }
