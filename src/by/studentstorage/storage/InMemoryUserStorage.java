@@ -156,4 +156,14 @@ public class InMemoryUserStorage implements UserStorage {
         }
         return false;
     }
+
+    @Override
+    public boolean contains(Role role) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getRole().equals(role)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
