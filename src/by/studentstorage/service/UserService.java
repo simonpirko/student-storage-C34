@@ -110,6 +110,6 @@ public class UserService {
         if (inMemoryUserStorage.contains(login)){
             return inMemoryUserStorage.getUserByLogin(login);
         }
-        throw new UserNotFoundException();
+        return null;
     }
 }

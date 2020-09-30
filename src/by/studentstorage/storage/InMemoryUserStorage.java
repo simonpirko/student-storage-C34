@@ -150,7 +150,7 @@ public class InMemoryUserStorage implements UserStorage {
     @Override
     public boolean contains(String login) {
         for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getLogin() == login){
+            if (users.get(i).getLogin().equals(login)){
                 return true;
             }
         }
