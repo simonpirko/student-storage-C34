@@ -1,8 +1,9 @@
 package by.studentstorage.action;
 
+import by.studentstorage.console.ConsoleApplication;
 import by.studentstorage.console.ConsoleReader;
 import by.studentstorage.console.ConsoleWriter;
-import by.studentstorage.domain.Role;
+import by.studentstorage.domain.Session;
 import by.studentstorage.domain.User;
 import by.studentstorage.service.UserService;
 import by.studentstorage.validator.UserValidator;
@@ -11,6 +12,7 @@ public class UserAction {
     private ConsoleWriter writer = new ConsoleWriter();
     private ConsoleReader reader = new ConsoleReader();
     private UserService userService = new UserService();
+
 
     public void registration(){
         writer.writeString("Please enter login");
@@ -70,5 +72,54 @@ public class UserAction {
         }
         writer.writeString("Welcome " + user.getName());
         writer.writeString("You successfully authorize yourself! ");
+        ConsoleApplication.session = new Session(user);
+
+    }
+
+    public void logout(){
+        ConsoleApplication.session = null;
+    }
+
+    public void changeName(){
+        writer.writeString("Please enter new name");
+        String name = reader.readString();
+        while (!UserValidator.validName(name)){
+            writer.writeString("Wrong input! Try again");
+            name = reader.readString();
+        }
+        userService.updateName(name, ConsoleApplication.session.getCurrentUser().getId());
+        writer.writeString("You successfully changed your name to " + name);
+    }
+
+    public void changeSurname(){
+        writer.writeString("Please enter new surname");
+        String surname = reader.readString();
+        while (!UserValidator.validSurname(surname)){
+            writer.writeString("Wrong input! Try again");
+            surname = reader.readString();
+        }
+        userService.updateSurname(surname, ConsoleApplication.session.getCurrentUser().getId());
+        writer.writeString("You successfully changed your surname to " + surname);
+    }
+
+    public void changeEmail(){
+        writer.writeString("Please enter new e-mail");
+        String email = reader.readString();
+        while (!UserValidator.validEmail(email)){
+            writer.writeString("Wrong input! Try again");
+            email = reader.readString();
+        }
+        userService.updateEmail(email, ConsoleApplication.session.getCurrentUser().getId());
+        writer.writeString("You successfully changed your email to " + email);
+    }
+    public void changePassword (){
+        writer.writeString("Please enter new password");
+        String password = reader.readString();
+        while (!UserValidator.validPassword(password)){
+            writer.writeString("Wrong input! Try again");
+            password = reader.readString();
+        }
+        userService.updatePassword(password, ConsoleApplication.session.getCurrentUser().getId());
+        writer.writeString("Password was updated!");
     }
 }

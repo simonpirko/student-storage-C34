@@ -19,7 +19,11 @@ public class UserValidator {
         return surName.length() > 0;
     }
 
+    public static boolean validEmail(String email){
+        return email.length() > 6;
+    }
+
     public static  boolean validRole(String role){
-         return role.equals("STUDENT") || role.equals("ADMIN")|| role.equals("HEADMAN")|| role.equals("TEACHER");
+        return role.equals("STUDENT") || role.equals("ADMIN")|| role.equals("HEADMAN")|| role.equals("TEACHER");
     }
 }
