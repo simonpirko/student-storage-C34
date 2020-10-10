@@ -13,6 +13,10 @@ public class ConsoleReader {
         return scanner.nextDouble();
     }
 
+    public long readLong(){
+        return scanner.nextLong();
+    }
+
     public int readInt(){
         return scanner.nextInt();
     }
