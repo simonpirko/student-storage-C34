@@ -1,7 +1,5 @@
 package by.studentstorage.validator;
 
-import by.studentstorage.domain.Role;
-
 public class UserValidator {
     public static boolean validLogin(String login){
         return login.length() > 3;

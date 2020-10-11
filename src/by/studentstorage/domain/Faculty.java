@@ -3,14 +3,30 @@ package by.studentstorage.domain;
 import java.util.Objects;
 
 public class Faculty {
-    private String faculty;
+    private long userID;
 
     @Override
     public String toString() {
         return "Faculty{" +
-                "faculty='" + faculty + '\'' +
+                "userID=" + userID +
+                ", faculty='" + faculty + '\'' +
                 '}';
     }
+
+    public long getUserID() {
+        return userID;
+    }
+
+    public void setUserID(long userID) {
+        this.userID = userID;
+    }
+
+    public Faculty(String faculty, long userID) {
+        this.userID = userID;
+        this.faculty = faculty;
+    }
+
+    private String faculty;
 
     @Override
     public boolean equals(Object o) {
