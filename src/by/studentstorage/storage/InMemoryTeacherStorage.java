@@ -13,9 +13,7 @@ public class InMemoryTeacherStorage implements TeacherStorage {
 
     @Override
     public boolean save(Teacher teacher) {
-        boolean resultUserSave = inMemoryUserStorage.save(teacher);
-        boolean resultTeacherSave = teachers.add(teacher);
-        return resultUserSave && resultTeacherSave;
+        return teachers.add(teacher);
     }
 
     @Override
@@ -26,9 +24,7 @@ public class InMemoryTeacherStorage implements TeacherStorage {
                 teachers.remove(i);
             }
         }
-        boolean resultTeacherRemove = teachers.contains(teacher);
-        boolean resultUserRemove = inMemoryUserStorage.contains(inMemoryUserStorage.remove(removeTeacherId));
-        return !resultTeacherRemove && !resultUserRemove;
+        return true;
     }
 
     @Override
@@ -38,8 +34,7 @@ public class InMemoryTeacherStorage implements TeacherStorage {
                 teachers.remove(i);
             }
         }
-        boolean resultTeacherRemove = teachers.contains(id);
-        return !resultTeacherRemove;
+        return true;
     }
 
     @Override
@@ -51,6 +46,16 @@ public class InMemoryTeacherStorage implements TeacherStorage {
         }
         boolean resultTeacherRemove = teachers.contains(login);
         return !resultTeacherRemove;
+    }
+
+    @Override
+    public boolean removeAllByDepartment(String department) {
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getDepartment().equals(department)){
+                teachers.remove(i);
+            }
+        }
+        return true;
     }
 
     @Override
@@ -81,6 +86,46 @@ public class InMemoryTeacherStorage implements TeacherStorage {
             }
         }
         return department;
+    }
+
+    @Override
+    public String updateName(String name, long id) {
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getId() == id){
+                teachers.get(i).setName(name);
+            }
+        }
+        return name;
+    }
+
+    @Override
+    public String updateSurname(String surname, long id) {
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getId() == id){
+                teachers.get(i).setSurname(surname);
+            }
+        }
+        return surname;
+    }
+
+    @Override
+    public String updatePassword(String password, long id) {
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getId() == id){
+                teachers.get(i).setPassword(password);
+            }
+        }
+        return password;
+    }
+
+    @Override
+    public String updateEmail(String email, long id) {
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getId() == id){
+                teachers.get(i).setEmail(email);
+            }
+        }
+        return email;
     }
 
     @Override
@@ -122,6 +167,37 @@ public class InMemoryTeacherStorage implements TeacherStorage {
     }
 
     @Override
+    public Teacher getTeacherById(long id) {
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getId()== id){
+                return teachers.get(i);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Teacher getTeacherByLogin(String login) {
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getLogin().equals(login)){
+                return teachers.get(i);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Teacher> getTeacherByName(String name) {
+        List<Teacher> allTeacherByName = new ArrayList<>();
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getName().equals(name)){
+                allTeacherByName.add(teachers.get(i));
+            }
+        }
+        return allTeacherByName;
+    }
+
+    @Override
     public boolean contains(Teacher teacher) {
         for (int i = 0; i < teachers.size(); i++) {
             if (teachers.get(i).equals(teacher)) {
@@ -146,6 +222,26 @@ public class InMemoryTeacherStorage implements TeacherStorage {
         for (int i = 0; i < teachers.size(); i++) {
             if (teachers.get(i).getPosition().equals(position)) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean contains(long id) {
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getId()==id){
+                return  true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean contains(String login) {
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getLogin().equals(login)){
+                return  true;
             }
         }
         return false;
