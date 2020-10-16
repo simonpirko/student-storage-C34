@@ -1,31 +1,33 @@
 package by.studentstorage.service;
 
 import by.studentstorage.domain.Faculty;
+import by.studentstorage.domain.Student;
+import by.studentstorage.domain.User;
 import by.studentstorage.storage.InMemoryFacultyStorage;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class FacultyService {
-    private InMemoryFacultyStorage inMemoryFacultyStorage = new InMemoryFacultyStorage();
+   /*private InMemoryFacultyStorage inMemoryFacultyStorage = new InMemoryFacultyStorage();
 
-    public boolean saveFaculty(Faculty faculty){
-        return inMemoryFacultyStorage.save(faculty);
+    public boolean saveFaculty(Student student, String facName){
+        return inMemoryFacultyStorage.save(student, facName);
     }
 
-    public Faculty remove(long userID){
-        Faculty removedFaculty = inMemoryFacultyStorage.remove(userID);
+    public Faculty remove(Student student){
+        Faculty removedFaculty = inMemoryFacultyStorage.remove(student);
         if (removedFaculty == null){
             throw new FacultyNotFoundException();
         }
         return removedFaculty;
     }
 
-    public String updateFaculty(Faculty faculty, String facultyName){
+    public String updateFaculty(Faculty faculty, String facultyName, User user){
         if (inMemoryFacultyStorage.contains(faculty)){
-            return inMemoryFacultyStorage.updateFaculty(faculty, facultyName);
+            return inMemoryFacultyStorage.updateFaculty(faculty, facultyName, user);
         }
-        return facultyName;
+        throw new FacultyNotFoundException();
     }
 
     public List<Faculty> getAll(){
@@ -42,11 +44,12 @@ public class FacultyService {
         }
         List<Faculty> byName = new ArrayList<>();
         for (int i = 0; i < all.size(); i++) {
-            if (all.get(i).getFaculty().equals(name)){
+            if (all.get(i).getFacultyName().equals(name)){
                 byName.add(all.get(i));
             }
         }
         return byName;
     }
+    */
 }
 

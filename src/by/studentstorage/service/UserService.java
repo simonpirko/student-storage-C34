@@ -12,7 +12,7 @@ public class UserService {
     private InMemoryUserStorage inMemoryUserStorage = new InMemoryUserStorage();
     private ConsoleWriter writer = new ConsoleWriter();
 
-    public boolean save(User user) {
+    public boolean save(User user) throws UserNotFoundException {
         if (inMemoryUserStorage.contains(user)) {
             return false;
         } else {
@@ -21,7 +21,7 @@ public class UserService {
         return true;
     }
 
-    public User remove(long id) {
+    public User remove(long id) throws UserNotFoundException {
         if (inMemoryUserStorage.contains(id)) {
             User user = inMemoryUserStorage.getUserById(id);
             inMemoryUserStorage.remove(id);
@@ -30,7 +30,7 @@ public class UserService {
         throw new UserNotFoundException();
     }
 
-    public User remove(String login) {
+    public User remove(String login) throws UserNotFoundException {
         if (inMemoryUserStorage.contains(login)) {
             User user = inMemoryUserStorage.getUserByLogin(login);
             inMemoryUserStorage.remove(login);
@@ -39,7 +39,7 @@ public class UserService {
         throw new UserNotFoundException();
     }
 
-    public String updateName(String name, long id) {
+    public String updateName(String name, long id) throws UserNotFoundException {
         if (inMemoryUserStorage.contains(id)) {
             inMemoryUserStorage.updateName(name, id);
             return name;
@@ -47,7 +47,7 @@ public class UserService {
         throw new UserNotFoundException();
     }
 
-    public String updateSurname(String surname, long id) {
+    public String updateSurname(String surname, long id) throws UserNotFoundException {
         if (inMemoryUserStorage.contains(id)) {
             inMemoryUserStorage.updateSurname(surname, id);
             return surname;
@@ -55,7 +55,7 @@ public class UserService {
         throw new UserNotFoundException();
     }
 
-    public String updatePassword(String pass, long id) {
+    public String updatePassword(String pass, long id) throws UserNotFoundException{
         if (inMemoryUserStorage.contains(id)) {
             inMemoryUserStorage.updatePassword(pass, id);
             return "Password changed successfully";
@@ -63,22 +63,22 @@ public class UserService {
         throw new UserNotFoundException();
     }
 
-    public String updateEmail(String email, long id) {
+    public String updateEmail(String email, long id) throws UserNotFoundException {
         if (inMemoryUserStorage.contains(id)) {
             inMemoryUserStorage.updateEmail(email, id);
             return email;
         }
-        throw new UserNotFoundException();
+        throw new UserNotFoundException() ;
     }
 
-    public List<User> getAll() {
+    public List<User> getAll() throws UserNotFoundException {
         if (inMemoryUserStorage.getAll().size() != 0){
             return inMemoryUserStorage.getAll();
         }
         throw new UserNotFoundException();
     }
 
-    public List<User> getAllByName(String name) {
+    public List<User> getAllByName(String name) throws UserNotFoundException {
         List<User> users = inMemoryUserStorage.getAll();
         List<User> byNames = new ArrayList<>();
         for (int i = 0; i < users.size(); i++) {
@@ -92,21 +92,21 @@ public class UserService {
         throw new UserNotFoundException();
     }
 
-    public List<User> getAllByRole(Role role) {
+    public List<User> getAllByRole(Role role) throws UserNotFoundException {
         if (inMemoryUserStorage.contains(role)){
             return inMemoryUserStorage.getAllByRole(role);
         }
         throw new UserNotFoundException();
     }
 
-    public User getUserById(long id) {
+    public User getUserById(long id) throws UserNotFoundException {
         if (inMemoryUserStorage.contains(id)){
             return inMemoryUserStorage.getUserById(id);
         }
         throw new UserNotFoundException();
     }
 
-    public User getUserByLogin(String login) {
+    public User getUserByLogin(String login)  {
         if (inMemoryUserStorage.contains(login)){
             return inMemoryUserStorage.getUserByLogin(login);
         }

@@ -1,40 +1,29 @@
 package by.studentstorage.domain;
 
-import javax.swing.*;
-import java.util.Date;
+
 import java.util.Objects;
 
 
 public class Student extends User{
     private String address;
-    private City city;
+    private String city;
     private String nationality;
-    private Country country;
-    private Phone phone;
-    private GroupLayout.Group group;
-    private Faculty faculty;
+    private String country;
+    private int phone;
+    private String group;
+    private String faculty;
     private int courseNumber;
-    private Date bornDate;
-    private EducationForm educationForm;
+    private String bornDate;
+    private String educationForm;
     private boolean warrior;
 
-    public Student(String name, String login, String surname, String email, String password, Role role, String address, City city, String nationality, Country country, Phone phone, GroupLayout.Group group, Faculty faculty, int courseNumber, Date bornDate, EducationForm educationForm, boolean warrior) {
-        super(name, login, surname, email, password, role);
-        this.address = address;
-        this.city = city;
-        this.nationality = nationality;
-        this.country = country;
-        this.phone = phone;
-        this.group = group;
-        this.faculty = faculty;
-        this.courseNumber = courseNumber;
-        this.bornDate = bornDate;
-        this.educationForm = educationForm;
-        this.warrior = warrior;
+    public Student(String login, String name, String surname, String password) {
+        super(login, name, surname, password, Role.STUDENT);
+
     }
 
-    public Student(long id, String login, String name, String surname, String email, String password, Role role, String address, City city, String nationality, Country country, Phone phone, GroupLayout.Group group, Faculty faculty, int courseNumber, Date bornDate, EducationForm educationForm, boolean warrior) {
-        super(id, login, name, surname, email, password, role);
+    public Student(String name, String login, String surname, String email, String password, Role role, String address, String city, String nationality, String country, int phone, String group, String faculty, int courseNumber, String  bornDate, String educationForm, boolean warrior) {
+        super(name, login, surname, email, password, role);
         this.address = address;
         this.city = city;
         this.nationality = nationality;
@@ -94,11 +83,11 @@ public class Student extends User{
         return address;
     }
 
-    public City getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(City city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
@@ -110,35 +99,35 @@ public class Student extends User{
         this.nationality = nationality;
     }
 
-    public Country getCountry() {
+    public String getCountry() {
         return country;
     }
 
-    public void setCountry(Country country) {
+    public void setCountry(String  country) {
         this.country = country;
     }
 
-    public Phone getPhone() {
+    public int getPhone() {
         return phone;
     }
 
-    public void setPhone(Phone phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
     }
 
-    public GroupLayout.Group getGroup() {
+    public String getGroup() {
         return group;
     }
 
-    public void setGroup(GroupLayout.Group group) {
+    public void setGroup(String group) {
         this.group = group;
     }
 
-    public Faculty getFaculty() {
+    public String getFaculty() {
         return faculty;
     }
 
-    public void setFaculty(Faculty faculty) {
+    public void setFaculty(String faculty) {
         this.faculty = faculty;
     }
 
@@ -150,19 +139,19 @@ public class Student extends User{
         this.courseNumber = courseNumber;
     }
 
-    public Date getBornDate() {
+    public String getBornDate() {
         return bornDate;
     }
 
-    public void setBornDate(Date bornDate) {
+    public void setBornDate(String  bornDate) {
         this.bornDate = bornDate;
     }
 
-    public EducationForm getEducationForm() {
+    public String getEducationForm() {
         return educationForm;
     }
 
-    public void setEducationForm(EducationForm educationForm) {
+    public void setEducationForm(String educationForm) {
         this.educationForm = educationForm;
     }
 
