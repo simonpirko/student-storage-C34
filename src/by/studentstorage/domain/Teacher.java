@@ -7,6 +7,10 @@ public class Teacher extends User{
     private Position position;
     private String department;
 
+    public Teacher(String login, String name, String surname, String password) {
+        super(login, name, surname, password);
+    }
+
     public Teacher(String name, String login, String surname, String email, String password, Role role, Rank rank, Position position, String department) {
         super(name, login, surname, email, password, role);
         this.rank = rank;

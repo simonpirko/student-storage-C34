@@ -1,32 +1,36 @@
 package by.studentstorage.storage;
 
 import by.studentstorage.domain.Faculty;
-import java.util.ArrayList;
-import java.util.List;
+import by.studentstorage.domain.Student;
 
 public class InMemoryFacultyStorage implements FacultyStorage {
-    private List<Faculty> faculties = new ArrayList<>();
+    /*private InMemoryUserStorage inMemoryUserStorage = new InMemoryUserStorage();
 
     @Override
-    public boolean save(Faculty faculty) {
-        return faculties.add(faculty);
+    public boolean save(Student student, String facultyName) {
+        if (inMemoryUserStorage.contains(student)){
+            student.setFaculty(new Faculty(facultyName));
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public Faculty remove(long userID) {
-        Faculty faculty = null;
-        for (int i = 0; i <faculties.size() ; i++) {
-            if (faculties.get(i).getUserID() == userID){
-                faculty = faculties.get(i);
-                faculties.remove(i);
-            }
+    public Faculty remove(Student student) {
+        Faculty faculty = student.getFaculty();
+        if (inMemoryUserStorage.contains(student)){
+            student.setFaculty(null);
         }
         return faculty;
     }
 
     @Override
-    public String updateFaculty(Faculty faculty, String facultyName) {
-        faculty.setFaculty(facultyName);
+    public String updateFaculty(String facultyName, Student student) {
+        if (inMemoryUserStorage.contains(student)){
+            Faculty faculty = student.getFaculty();
+            faculty.setFacultyName(facultyName);
+
+        }
         return facultyName;
     }
 
@@ -39,7 +43,7 @@ public class InMemoryFacultyStorage implements FacultyStorage {
     public List<Faculty> getAllByFacultyName(String name) {
         List<Faculty> facultiesList = new ArrayList<>();
         for (int i = 0; i < faculties.size(); i++) {
-            if (faculties.get(i).getFaculty().equals(name)){
+            if (faculties.get(i).getFacultyName().equals(name)){
                 facultiesList.add(faculties.get(i));
             }
         }
@@ -55,4 +59,5 @@ public class InMemoryFacultyStorage implements FacultyStorage {
         }
         return false;
     }
+ */
 }

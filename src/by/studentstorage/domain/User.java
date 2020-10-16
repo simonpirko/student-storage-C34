@@ -2,7 +2,7 @@ package by.studentstorage.domain;
 
 import java.util.Objects;
 
-public class User {
+public abstract class User {
     private long id;
     private String login;
     private String name;
@@ -18,15 +18,32 @@ public class User {
         this.password = password;
     }
 
-    public User() {
-    }
-
     public User(long id, String login, String name, String surname, String email, String password, Role role) {
         this.id = id;
         this.login = login;
         this.name = name;
         this.surname = surname;
         this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User() {
+    }
+
+    public User(String login, String name, String surname, String password, Role role) {
+        this.login = login;
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User(long id, String login, String name, String surname, String password, Role role) {
+        this.id = id;
+        this.login = login;
+        this.name = name;
+        this.surname = surname;
         this.password = password;
         this.role = role;
     }

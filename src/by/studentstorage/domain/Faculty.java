@@ -3,56 +3,42 @@ package by.studentstorage.domain;
 import java.util.Objects;
 
 public class Faculty {
-    private long userID;
+    private String facultyName;
 
-    @Override
-    public String toString() {
-        return "Faculty{" +
-                "userID=" + userID +
-                ", faculty='" + faculty + '\'' +
-                '}';
+    public Faculty() {
     }
 
-    public long getUserID() {
-        return userID;
+    public Faculty(String facultyName) {
+        this.facultyName = facultyName;
     }
 
-    public void setUserID(long userID) {
-        this.userID = userID;
+    public String getFacultyName() {
+        return facultyName;
     }
 
-    public Faculty(String faculty, long userID) {
-        this.userID = userID;
-        this.faculty = faculty;
+    public void setFacultyName(String facultyName) {
+        this.facultyName = facultyName;
     }
-
-    private String faculty;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Faculty faculty1 = (Faculty) o;
-        return Objects.equals(faculty, faculty1.faculty);
+        Faculty faculty = (Faculty) o;
+        return Objects.equals(facultyName, faculty.facultyName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(faculty);
+        return Objects.hash(facultyName);
     }
 
-    public String getFaculty() {
-        return faculty;
-    }
-
-    public void setFaculty(String faculty) {
-        this.faculty = faculty;
-    }
-
-    public Faculty() {
-    }
-
-    public Faculty(String faculty) {
-        this.faculty = faculty;
+    @Override
+    public String toString() {
+        return "Faculty{" +
+                "facultyName='" + facultyName + '\'' +
+                '}';
     }
 }
+
+
