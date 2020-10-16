@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryUserStorage implements UserStorage {
+
     private static List<User> users = new ArrayList<>();
     @Override
     public boolean save(User user) {
