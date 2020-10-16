@@ -100,10 +100,11 @@ public class UserService {
     }
 
     public User getUserById(long id) {
+        User user = null;
         if (inMemoryUserStorage.contains(id)){
-            return inMemoryUserStorage.getUserById(id);
+            user = inMemoryUserStorage.getUserById(id);
         }
-        throw new UserNotFoundException();
+        return user;
     }
 
     public User getUserByLogin(String login) {
