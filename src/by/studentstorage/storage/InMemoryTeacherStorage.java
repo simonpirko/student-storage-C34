@@ -14,7 +14,10 @@ public class InMemoryTeacherStorage implements TeacherStorage {
     @Override
     public boolean save(Teacher teacher) {
         return teachers.add(teacher);
+<<<<<<< HEAD
        
+=======
+>>>>>>> Adding methods: *updateName(Surname,Password,Email) *getTeacherById(Login,Name) *contains(long id),(String login) Adding TeacerServise class and implementing it.
     }
 
     @Override
