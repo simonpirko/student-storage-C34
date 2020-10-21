@@ -4,14 +4,13 @@ import java.util.Objects;
 
 public class Country {
     private String countryName;
-
-    public Country() {
-    }
+    private long userId;
 
     @Override
     public String toString() {
         return "Country{" +
                 "countryName='" + countryName + '\'' +
+                ", userId=" + userId +
                 '}';
     }
 
@@ -20,12 +19,29 @@ public class Country {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Country country = (Country) o;
-        return Objects.equals(countryName, country.countryName);
+        return userId == country.userId &&
+                Objects.equals(countryName, country.countryName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(countryName);
+        return Objects.hash(countryName, userId);
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public Country(String countryName, long userId) {
+        this.countryName = countryName;
+        this.userId = userId;
+    }
+
+    public Country() {
     }
 
     public String getCountryName() {
