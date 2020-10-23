@@ -9,10 +9,6 @@ import java.util.List;
 public interface TeacherStorage {
     boolean save(Teacher teacher);
 
-    boolean remove(Teacher teacher);
-    boolean remove(long id);
-    boolean remove(String login);
-
     Rank updateRank(Rank rank, long id);
     Position updatePosition(Position position, long id);
     String updateDepartment(String department, long id);

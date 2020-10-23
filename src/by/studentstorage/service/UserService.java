@@ -71,11 +71,11 @@ public class UserService {
         throw new UserNotFoundException() ;
     }
 
-    public List<User> getAll() throws UserNotFoundException {
-        if (inMemoryUserStorage.getAll().size() != 0){
+    public List<User> getAll(){
+//        if (inMemoryUserStorage.getAll().size() != 0){
             return inMemoryUserStorage.getAll();
-        }
-        throw new UserNotFoundException();
+//        }
+//        throw new UserNotFoundException();
     }
 
     public List<User> getAllByName(String name) throws UserNotFoundException {

@@ -3,7 +3,8 @@ package by.studentstorage.domain;
 import java.util.Objects;
 
 public abstract class User {
-    private long id;
+    private long inID = 1;
+    private long id = inID++;
     private String login;
     private String name;
     private String surname;
