@@ -6,6 +6,10 @@ public class Phone {
     private int phoneNumber;
     private long userId;
 
+    public Phone(int phoneNumber, long id) {
+
+    }
+
     @Override
     public String toString() {
         return "Phone{" +
