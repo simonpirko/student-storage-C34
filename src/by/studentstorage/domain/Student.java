@@ -19,7 +19,6 @@ public class Student extends User{
 
     public Student(String login, String name, String surname, String password) {
         super(login, name, surname, password, Role.STUDENT);
-
     }
 
     public Student(String name, String login, String surname, String email, String password, Role role, String address, String city, String nationality, String country, int phone, String group, String faculty, int courseNumber, String  bornDate, String educationForm, boolean warrior) {

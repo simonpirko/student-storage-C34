@@ -1,12 +1,11 @@
 package by.studentstorage.console;
 
-import by.studentstorage.action.FacultyAction;
-import by.studentstorage.action.StudentAction;
-import by.studentstorage.action.UserAction;
-import by.studentstorage.domain.Role;
-import by.studentstorage.domain.Session;
-import by.studentstorage.domain.Student;
-import by.studentstorage.domain.User;
+import by.studentstorage.action.*;
+import by.studentstorage.domain.*;
+import by.studentstorage.service.LessonService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConsoleApplication {
     private int applicationState = 1;
@@ -14,11 +13,13 @@ public class ConsoleApplication {
     private ConsoleWriter consoleWriter = new ConsoleWriter();
     private UserAction userAction = new UserAction();
     private StudentAction studentAction = new StudentAction();
-    private FacultyAction facultyAction = new FacultyAction();
+    private TeacherAction teacherAction = new TeacherAction();
+    private LessonAction lessonAction = new LessonAction();
+    private AdminAction adminAction = new AdminAction();
     public static Session session;
 
     public void run() {
-        while (applicationState != 0){
+        while (applicationState != 0) {
             menu();
         }
     }
@@ -53,25 +54,62 @@ public class ConsoleApplication {
                         applicationState = 1;
                         break;
                     case 2:
-                        applicationState = 5;
+                        adminAction.addTeacher();
                         break;
                     case 3:
+                        adminAction.addLesson();
+                        break;
+                    case 4:
                         applicationState = 6;
+                        break;
+                    case 5:
+                        //remover
+                        break;
+                    case 6:
+                        //updater
+                        break;
+                    case 7:
+                        adminAction.showAll();
                         break;
                     default:
                         consoleWriter.writeString("Wrong input!");
+                }
+            } else {
+                if (session.getCurrentUser().getRole().equals(Role.TEACHER)) {
+                    applicationState = 5;
+                    showTeacherMenu();                                                                                 
+                    switch (consoleReader.readInt()) {
+                        case 0:
+                            userAction.logout();
+                            applicationState = 1;
+                            break;
+                        case 1:
+                            teacherAction.addLesson();
+                            break;
+                        case 2:
+                            lessonAction.showAllLessons();
+                            break;
+                        default:
+                            consoleWriter.writeString("Wrong input!");
+                    }
+                }
+            }
+            if (applicationState == 6){
+                lessonAction.showAllLessons();
+                consoleWriter.writeString("0 - Back");
+                if (consoleReader.readInt() == 0) {
+                    applicationState = -1;
                 }
             }
             if (session != null && applicationState == 2) {
                 showUserMenu();
                 switch (consoleReader.readInt()) {
-                    case 0 -> applicationState = 0;
-                    case 1 -> {
+                    case 0 -> {
                         userAction.logout();
                         applicationState = 1;
                     }
-                    case 2 -> applicationState = 3;
-                    case 3 -> applicationState = 4;
+                    case 1 -> applicationState = 3;
+                    case 2 -> applicationState = 4;
                     default -> consoleWriter.writeString("Wrong input!");
                 }
             }
@@ -97,20 +135,19 @@ public class ConsoleApplication {
         }
     }
 
-    private void showGuestMenu(){
+    private void showGuestMenu() {
         consoleWriter.writeString("0 - Exit");
         consoleWriter.writeString("1 - Registration");
         consoleWriter.writeString("2 - Authorization");
     }
 
-    private void showUserMenu(){
-        consoleWriter.writeString("0 - Exit");
-        consoleWriter.writeString("1 - Log out");
-        consoleWriter.writeString("2 - Edit profile");
-        consoleWriter.writeString("3 - My profile");
+    private void showUserMenu() {
+        consoleWriter.writeString("0 - Log out");
+        consoleWriter.writeString("1 - Edit profile");
+        consoleWriter.writeString("2 - My profile");
     }
 
-    private void showEditStudentMenu(){
+    private void showEditStudentMenu() {
         consoleWriter.writeString("0 - Back");
         consoleWriter.writeString("1 - Change name");
         consoleWriter.writeString("2 - Change surname");
@@ -120,12 +157,12 @@ public class ConsoleApplication {
         consoleWriter.writeString("6 - Change faculty");
     }
 
-    private void showUserProfile(){
-        Student currentUser = (Student) ConsoleApplication.session.getCurrentUser();
+    private void showUserProfile() {
+        consoleWriter.writeString("ID: " + ConsoleApplication.session.getCurrentUser().getId());
         consoleWriter.writeString("Name: " + ConsoleApplication.session.getCurrentUser().getName());
         consoleWriter.writeString("Surname: " + ConsoleApplication.session.getCurrentUser().getSurname());
-        consoleWriter.writeString( "Login: " +(ConsoleApplication.session.getCurrentUser()).getLogin());
-        consoleWriter.writeString("Born date: " +((Student) ConsoleApplication.session.getCurrentUser()).getBornDate());
+        consoleWriter.writeString("Login: " + (ConsoleApplication.session.getCurrentUser()).getLogin());
+        consoleWriter.writeString("Born date: " + ((Student) ConsoleApplication.session.getCurrentUser()).getBornDate());
         consoleWriter.writeString("E-mail: " + ConsoleApplication.session.getCurrentUser().getEmail());
         consoleWriter.writeString("Country: " + ((Student) ConsoleApplication.session.getCurrentUser()).getCountry());
         consoleWriter.writeString("Nationality: " + ((Student) ConsoleApplication.session.getCurrentUser()).getNationality());
@@ -139,12 +176,21 @@ public class ConsoleApplication {
         consoleWriter.writeString("0 - Back");
     }
 
-    private void showAdminMenu(){
+    private void showAdminMenu() {
         consoleWriter.writeString("0 - Exit");
         consoleWriter.writeString("1 - Log out");
         consoleWriter.writeString("2 - Add Teacher");
-        consoleWriter.writeString("3 - Remover");
-        consoleWriter.writeString("4 - Updater");
+        consoleWriter.writeString("3 - Add Lesson");
+        consoleWriter.writeString("4 - Schedule");
+        consoleWriter.writeString("5 - Remover");
+        consoleWriter.writeString("6 - Updater");
+        consoleWriter.writeString("7 - Show all users");
+    }
+
+    private void showTeacherMenu() {
+        consoleWriter.writeString("0 - Log out");
+        consoleWriter.writeString("1 - Add new lesson");
+        consoleWriter.writeString("2 - Schedule");
     }
 }
 

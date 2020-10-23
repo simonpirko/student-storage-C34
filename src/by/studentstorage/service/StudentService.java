@@ -5,8 +5,6 @@ import by.studentstorage.domain.Faculty;
 import by.studentstorage.domain.Group;
 import by.studentstorage.domain.Student;
 import by.studentstorage.storage.InMemoryStudentStorage;
-
-import java.util.EmptyStackException;
 import java.util.List;
 
 public class StudentService {
