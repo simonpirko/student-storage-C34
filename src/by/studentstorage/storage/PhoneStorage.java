@@ -7,10 +7,11 @@ import java.util.List;
 
 public interface PhoneStorage {
         boolean save(Phone phone);
-        Phone remove(int userId);
-        Phone updatePhone(Phone phone, int userId);
+        Phone remove(long userId);
+        Phone updatePhone(Phone phone, long userId);
         List<Phone> getAllPhoneNumber();
-        Phone getByNumberUserId(int userId);
+        Phone getByNumberUserId(long userId);
+        boolean contains(Phone phone);
 
 
 }

@@ -16,7 +16,7 @@ public class InMemoryPhoneStorage implements PhoneStorage {
     }
 
     @Override
-    public Phone remove(int userId) {
+    public Phone remove(long userId) {
         Phone phone = null;
         for (int i = 0; i < phoneList.size(); i++) {
             if (phoneList.get(i).getUserId() == userId){
@@ -28,7 +28,7 @@ public class InMemoryPhoneStorage implements PhoneStorage {
     }
 
     @Override
-    public Phone updatePhone(Phone phone, int userId) {
+    public Phone updatePhone(Phone phone, long userId) {
         for (int i = 0; i < phoneList.size(); i++) {
             if (phoneList.get(i).getUserId() == userId) {
                 phoneList.get(i).setPhoneNumber(phone.getPhoneNumber());
@@ -44,12 +44,22 @@ public class InMemoryPhoneStorage implements PhoneStorage {
     }
 
     @Override
-    public Phone getByNumberUserId(int phoneNumber) {
+    public Phone getByNumberUserId(long phoneNumber) {
         for (int i = 0; i < phoneList.size(); i++) {
             if (phoneList.get(i).getPhoneNumber() == phoneNumber) {
                 return phoneList.get(i);
             }
         }
         return null;
+    }
+
+    @Override
+    public boolean contains(Phone phone) {
+        for (int i = 0; i < phoneList.size(); i++) {
+            if (phoneList.get(i) == phone) {
+                return true;
+            }
+        }
+        return false;
     }
 }

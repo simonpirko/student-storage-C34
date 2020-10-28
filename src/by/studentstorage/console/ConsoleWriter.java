@@ -5,7 +5,7 @@ public class ConsoleWriter {
         System.out.println(message);
     }
 
-    public void writeInt(int i){
+    public void writeInt(String i){
         System.out.println(i);
     }
 
