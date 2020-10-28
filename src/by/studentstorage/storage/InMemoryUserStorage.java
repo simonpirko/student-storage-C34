@@ -7,12 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryUserStorage implements UserStorage {
-<<<<<<< HEAD
 
     private static List<User> users = new ArrayList<>();
-=======
-    private static final List<User> users = new ArrayList<>();
->>>>>>> Adding methods: *updateName(Surname,Password,Email) *getTeacherById(Login,Name) *contains(long id),(String login) Adding TeacerServise class and implementing it.
     @Override
     public boolean save(User user) {
         if (users.add(user)) {
