@@ -18,6 +18,10 @@ public interface TeacherStorage {
     List<Teacher> getAllByPosition(Position position);
     List<Teacher> getAllByDepartment(String department);
 
+    public boolean remove(String login);
+    public boolean remove(long id);
+    public boolean remove(Teacher teacher);
+
     boolean contains(Teacher teacher);
     boolean contains(Rank rank);
     boolean contains(Position position);

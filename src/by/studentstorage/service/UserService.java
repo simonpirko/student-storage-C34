@@ -99,22 +99,19 @@ public class UserService {
         throw new UserNotFoundException();
     }
 
-<<<<<<< HEAD
-    public User getUserById(long id) throws UserNotFoundException {
-=======
-    public User getUserById(long id) {
->>>>>>> Adding methods: *updateName(Surname,Password,Email) *getTeacherById(Login,Name) *contains(long id),(String login) Adding TeacerServise class and implementing it.
-        User user = null;
-        if (inMemoryUserStorage.contains(id)){
-            user = inMemoryUserStorage.getUserById(id);
+        public User getUserById ( long id){
+            User user = null;
+            if (inMemoryUserStorage.contains(id)) {
+                user = inMemoryUserStorage.getUserById(id);
+            }
+            return user;
         }
-        return user;
-    }
 
-    public User getUserByLogin(String login)  {
-        if (inMemoryUserStorage.contains(login)){
-            return inMemoryUserStorage.getUserByLogin(login);
+
+        public User getUserByLogin (String login){
+            if (inMemoryUserStorage.contains(login)) {
+                return inMemoryUserStorage.getUserByLogin(login);
+            }
+            return null;
         }
-        return null;
     }
-}
