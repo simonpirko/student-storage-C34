@@ -78,10 +78,59 @@ public class StudentService {
         return inMemoryStudentStorage.updateEducationForm(form,student.getId());
     }
 
+    public String updateAddress(String address, Student student) {
+        if (!inMemoryStudentStorage.contains(student)){
+            throw new StudentNotFoudException();
+        }
+        return inMemoryStudentStorage.updateAddress(address,student.getId());
+    }
+
     public String updateFaculty(String faculty, Student student) {
         if (!inMemoryStudentStorage.contains(student)){
             throw new StudentNotFoudException();
         }
         return inMemoryStudentStorage.updateFaculty(faculty,student.getId());
+    }
+
+    public String updateNationality(String nat, long id) {
+        if (!inMemoryStudentStorage.contains(id)){
+            throw new StudentNotFoudException();
+        }
+        return inMemoryStudentStorage.updateNationality(nat,id);
+    }
+
+    public String updateCity(String city, long id) {
+        if (!inMemoryStudentStorage.contains(id)){
+            throw new StudentNotFoudException();
+        }
+        return inMemoryStudentStorage.updateCity(city,id);
+    }
+
+    public String updateCountry(String country, long id) {
+        if (!inMemoryStudentStorage.contains(id)){
+            throw new StudentNotFoudException();
+        }
+        return inMemoryStudentStorage.updateCountry(country ,id);
+    }
+
+    public int updatePhone(int phone, long id) {
+        if (!inMemoryStudentStorage.contains(id)){
+            throw new StudentNotFoudException();
+        }
+        return inMemoryStudentStorage.updatePhone(phone ,id);
+    }
+
+    public String updateBirth(String birth, long id) {
+        if (!inMemoryStudentStorage.contains(id)){
+            throw new StudentNotFoudException();
+        }
+        return inMemoryStudentStorage.updateBirth(birth ,id);
+    }
+
+    public boolean updateWarrior(boolean b, long id) {
+        if (!inMemoryStudentStorage.contains(id)){
+            throw new StudentNotFoudException();
+        }
+        return inMemoryStudentStorage.updateWarrior(b ,id);
     }
 }

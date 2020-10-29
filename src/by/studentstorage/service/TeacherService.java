@@ -13,14 +13,14 @@ public class TeacherService {
         if (!inMemoryTeacherStorage.contains(teacher)) {
             return inMemoryTeacherStorage.save(teacher);
         }
-        throw new UserAlreadyExist();
+        throw new TeacherAlreadyExist();
     }
 
     public Rank updateRank(Rank rank, Teacher teacher) {
-        if (!inMemoryTeacherStorage.contains(teacher)){
-            throw new TeacherNotFoundException();
+        if (inMemoryTeacherStorage.contains(teacher)){
+            return inMemoryTeacherStorage.updateRank(rank,teacher.getId());
         }
-        return inMemoryTeacherStorage.updateRank(rank,teacher.getId());
+        throw new TeacherNotFoundException();
     }
 
     public Position position(Position position, Teacher teacher) {
@@ -30,16 +30,9 @@ public class TeacherService {
         return inMemoryTeacherStorage.updatePosition(position,teacher.getId());
     }
 
-    public String updateRank(String department, Teacher teacher) {
-        if (!inMemoryTeacherStorage.contains(teacher)){
-            throw new TeacherNotFoundException();
-        }
-        return inMemoryTeacherStorage.updateDepartment(department,teacher.getId());
-    }
-
     public List<Teacher> getAll(){
-        if (inMemoryTeacherStorage.getAllTeachers().size() != 0){
-            return inMemoryTeacherStorage.getAllTeachers();
+        if (inMemoryTeacherStorage.getAll().size() != 0){
+            return inMemoryTeacherStorage.getAll();
         }
         throw new StudentNotFoudException();
     }
@@ -70,7 +63,7 @@ public class TeacherService {
 
     public Position  updatePosition (Position position, Teacher teacher) {
         if (!inMemoryTeacherStorage.contains(teacher)){
-            throw new StudentNotFoudException();
+            throw new TeacherNotFoundException();
         }
         return inMemoryTeacherStorage.updatePosition(position,teacher.getId());
     }

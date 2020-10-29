@@ -14,6 +14,7 @@ public interface UserStorage {
     String updateSurname(String surname, long id);
     String updatePassword(String pass, long id);
     String updateEmail(String email, long id);
+    String updateLogin(String login, long id);
 
     List<User> getAll();
     List<User> getAllByName(String name);

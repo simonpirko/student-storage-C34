@@ -17,6 +17,14 @@ public interface StudentStorage {
     public int updateCourse(int course, long id);
     public String updateEducationForm(String form, long id);
     public String updateFaculty(String faculty, long id);
+    public String updateAddress(String address, long id);
+    public String updateNationality(String nat, long id);
+    public String updateCountry(String country, long id);
+    public int updatePhone(int phone, long id);
+    public String updateBirth(String birth, long id);
+    public String updateCity(String city, long id);
+    public boolean updateWarrior(boolean b, long id);
 
     public boolean contains(Student student);
+    public boolean contains(long id);
     }

@@ -1,63 +1,74 @@
 package by.studentstorage.storage;
 
-import by.studentstorage.domain.Position;
-import by.studentstorage.domain.Rank;
-import by.studentstorage.domain.Teacher;
+import by.studentstorage.domain.*;
+import by.studentstorage.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryTeacherStorage implements TeacherStorage {
-    private List<Teacher> teachers = new ArrayList<>();
-    InMemoryUserStorage inMemoryUserStorage = new InMemoryUserStorage();
+    private UserService userService = new UserService();
 
     @Override
     public boolean save(Teacher teacher) {
-        boolean resultUserSave = inMemoryUserStorage.save(teacher);
-        boolean resultTeacherSave = teachers.add(teacher);
-        return resultUserSave && resultTeacherSave;
+        teacher.setRole(Role.TEACHER);
+        return userService.save(teacher);
     }
 
     @Override
-    public boolean remove(Teacher teacher) {
-        long removeTeacherId = teacher.getId();
-        for (int i = 0; i < teachers.size(); i++) {
-            if (teachers.get(i).getId() == removeTeacherId) {
-                teachers.remove(i);
+    public List<Teacher> getAll() {
+        List<User> all = userService.getAll();
+        List<Teacher> teachers = new ArrayList<>();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).getRole().equals(Role.TEACHER)) {
+                teachers.add((Teacher) all.get(i));
             }
         }
-        boolean resultTeacherRemove = teachers.contains(teacher);
-        boolean resultUserRemove = inMemoryUserStorage.contains(inMemoryUserStorage.remove(removeTeacherId));
-        return !resultTeacherRemove && !resultUserRemove;
+        return teachers;
     }
 
     @Override
-    public boolean remove(long id) {
-        for (int i = 0; i < teachers.size(); i++) {
-            if (teachers.get(i).getId() == id){
-                teachers.remove(i);
+    public List<Teacher> getAllByRank(Rank rank) {
+        List<Teacher> all = getAll();
+        List<Teacher> byRank = new ArrayList<>();
+        for (Teacher teacher : all) {
+            if (teacher.getRank().equals(rank)) {
+                byRank.add(teacher);
             }
         }
-        boolean resultTeacherRemove = teachers.contains(id);
-        return !resultTeacherRemove;
+        return byRank;
     }
 
     @Override
-    public boolean remove(String login) {
-        for (int i = 0; i <teachers.size() ; i++) {
-            if (teachers.get(i).getLogin().equals(login)){
-                teachers.remove(i);
+    public List<Teacher> getAllByPosition(Position position) {
+        List<Teacher> all = getAll();
+        List<Teacher> byPosition = new ArrayList<>();
+        for (Teacher teacher : all) {
+            if (teacher.getPosition().equals(position)) {
+                byPosition.add(teacher);
             }
         }
-        boolean resultTeacherRemove = teachers.contains(login);
-        return !resultTeacherRemove;
+        return byPosition;
+    }
+
+    @Override
+    public List<Teacher> getAllByDepartment(String department) {
+        List<Teacher> all = getAll();
+        List<Teacher> byDepart = new ArrayList<>();
+        for (Teacher teacher : all) {
+            if (teacher.getDepartment().equals(department)) {
+                byDepart.add(teacher);
+            }
+        }
+        return byDepart;
     }
 
     @Override
     public Rank updateRank(Rank rank, long id) {
-        for (int i = 0; i < teachers.size(); i++) {
-            if (teachers.get(i).getId() == id) {
-                teachers.get(i).setRank(rank);
+        List<Teacher> all = getAll();
+        for (Teacher teacher : all) {
+            if (teacher.getId() == id) {
+                teacher.setRank(rank);
             }
         }
         return rank;
@@ -65,9 +76,10 @@ public class InMemoryTeacherStorage implements TeacherStorage {
 
     @Override
     public Position updatePosition(Position position, long id) {
-        for (int i = 0; i < teachers.size(); i++) {
-            if (teachers.get(i).getId() == id) {
-                teachers.get(i).setPosition(position);
+        List<Teacher> all = getAll();
+        for (Teacher teacher : all) {
+            if (teacher.getId() == id) {
+                teacher.setPosition(position);
             }
         }
         return position;
@@ -75,56 +87,46 @@ public class InMemoryTeacherStorage implements TeacherStorage {
 
     @Override
     public String updateDepartment(String department, long id) {
-        for (int i = 0; i < teachers.size(); i++) {
-            if (teachers.get(i).getId() == id) {
-                teachers.get(i).setDepartment(department);
+        List<Teacher> all = getAll();
+        for (Teacher teacher : all) {
+            if (teacher.getId() == id) {
+                teacher.setDepartment(department);
             }
         }
         return department;
     }
 
     @Override
-    public List<Teacher> getAllTeachers() {
-        return teachers;
+    public boolean remove(String login) {
+        return false;
     }
 
     @Override
-    public List<Teacher> getAllByRank(Rank rank) {
-        List<Teacher> allByRank = new ArrayList<>();
-        for (int i = 0; i < teachers.size(); i++) {
-            if (teachers.get(i).getRank().equals(rank)) {
-                allByRank.add(teachers.get(i));
-            }
-        }
-        return allByRank;
+    public boolean remove(long id) {
+        return false;
     }
 
     @Override
-    public List<Teacher> getAllByPosition(Position position) {
-        List<Teacher> allByPosition = new ArrayList<>();
-        for (int i = 0; i < teachers.size(); i++) {
-            if (teachers.get(i).getPosition().equals(position)) {
-                allByPosition.add(teachers.get(i));
-            }
-        }
-        return allByPosition;
-    }
-
-    @Override
-    public List<Teacher> getAllByDepartment(String department) {
-        List<Teacher> allByDepartment = new ArrayList<>();
-        for (int i = 0; i < teachers.size(); i++) {
-            if (teachers.get(i).getDepartment().equals(department)) {
-                allByDepartment.add(teachers.get(i));
-            }
-        }
-        return allByDepartment;
+    public boolean remove(Teacher teacher) {
+        return false;
     }
 
     @Override
     public boolean contains(Teacher teacher) {
-        for (int i = 0; i < teachers.size(); i++) {
-            if (teachers.get(i).equals(teacher)) {
+        List<Teacher> all = getAll();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).equals(teacher)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean contains(long id) {
+        List<Teacher> all = getAll();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).getId() == id) {
                 return true;
             }
         }
@@ -133,8 +135,9 @@ public class InMemoryTeacherStorage implements TeacherStorage {
 
     @Override
     public boolean contains(Rank rank) {
-        for (int i = 0; i < teachers.size(); i++) {
-            if (teachers.get(i).getRank().equals(rank)) {
+        List<Teacher> all = getAll();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).getRank().equals(rank)) {
                 return true;
             }
         }
@@ -143,11 +146,14 @@ public class InMemoryTeacherStorage implements TeacherStorage {
 
     @Override
     public boolean contains(Position position) {
-        for (int i = 0; i < teachers.size(); i++) {
-            if (teachers.get(i).getPosition().equals(position)) {
+        List<Teacher> all = getAll();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).getPosition().equals(position)) {
                 return true;
             }
         }
         return false;
     }
+
+
 }

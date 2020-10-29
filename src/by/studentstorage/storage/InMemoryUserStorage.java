@@ -2,7 +2,6 @@ package by.studentstorage.storage;
 
 import by.studentstorage.domain.Role;
 import by.studentstorage.domain.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,6 +79,17 @@ public class InMemoryUserStorage implements UserStorage {
         }
         return email;
     }
+
+    @Override
+    public String updateLogin(String login, long id) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId() == id){
+                users.get(i).setLogin(login);
+            }
+        }
+        return login;
+    }
+
 
     @Override
     public List<User> getAll() {
