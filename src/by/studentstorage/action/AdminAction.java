@@ -89,7 +89,38 @@ public class AdminAction {
     public void showAll(){
         List<User> all = userService.getAll();
         for (int i = 0; i < all.size(); i++) {
-            consoleWriter.writeString(String.valueOf(all.get(i)));
+            User user = all.get(i);
+            consoleWriter.writeString(String.valueOf(user.getRole()));
+            consoleWriter.writeString("User's ID: " + user.getId());
+            consoleWriter.writeString("User's login: " + user.getLogin());
+            consoleWriter.writeString("User's password: " + user.getPassword());
+            consoleWriter.writeString("User's name: " + user.getName());
+            consoleWriter.writeString("User's surname: " + user.getSurname());
+            consoleWriter.writeString("User's e-mail: " + user.getEmail());
+
+            if (user.getRole().equals(Role.TEACHER)){
+                Teacher teacher = (Teacher) user;
+                consoleWriter.writeString("User's rank: " + teacher.getRank());
+                consoleWriter.writeString("User's position: " + teacher.getPosition());
+                consoleWriter.writeString("User's department: " + teacher.getDepartment());
+                consoleWriter.writeString("////////////////////////////////////////////////");
+                consoleWriter.newLine();
+            }
+            if (user.getRole().equals(Role.STUDENT)){
+                Student student = (Student) user;
+                consoleWriter.writeString("User's born date: " + student.getBornDate());
+                consoleWriter.writeString("User's country: " + student.getCountry());
+                consoleWriter.writeString("User's nationality: " + student.getNationality());
+                consoleWriter.writeString("User's city: " + student.getCity());
+                consoleWriter.writeString("User's address: " + student.getAddress());
+                consoleWriter.writeString("User's phone number: " + student.getPhone());
+                consoleWriter.writeString("User's form of education: " + student.getEducationForm());
+                consoleWriter.writeString("User's faculty: " + student.getFaculty());
+                consoleWriter.writeString("User's group: " + student.getGroup());
+                consoleWriter.writeString("User's course number: " + student.getCourseNumber());
+                consoleWriter.writeString("////////////////////////////////////////////////");
+                consoleWriter.newLine();
+            }
         }
     }
 }

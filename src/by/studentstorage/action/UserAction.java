@@ -60,12 +60,23 @@ public class UserAction {
         if (login.equals("admin")) {
             writer.writeString("Please enter password");
             String password = reader.readString();
-            if (password.equals("adminindahouse")) {
+            if (password.equals("admin")) {
                 Admin admin = new Admin();
                 ConsoleApplication.session = new Session(admin);
                 return;
             }
         }
+
+        if (login.equals("moder")) {
+            writer.writeString("Please enter password");
+            String password = reader.readString();
+            if (password.equals("moder")) {
+                Moderator moder = new Moderator();
+                ConsoleApplication.session = new Session(moder);
+                return;
+            }
+        }
+
         User user = userService.getUserByLogin(login);
         while (user == null) {
             writer.writeString("Wrong login! Try again");
@@ -81,8 +92,7 @@ public class UserAction {
         writer.writeString("Welcome " + user.getName());
         writer.writeString("You successfully authorize yourself! ");
         ConsoleApplication.session = new Session(user);
-
-    }
+        }
 
     public void logout() {
         ConsoleApplication.session = null;

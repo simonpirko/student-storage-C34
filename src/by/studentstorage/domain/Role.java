@@ -1,5 +1,5 @@
 package by.studentstorage.domain;
 
 public enum Role {
-    ADMIN, STUDENT, HEADMAN, TEACHER
+    ADMIN, MODERATOR, STUDENT, HEADMAN, TEACHER
 }

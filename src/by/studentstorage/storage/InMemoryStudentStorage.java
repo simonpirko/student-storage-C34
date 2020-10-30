@@ -119,10 +119,98 @@ public class InMemoryStudentStorage implements StudentStorage {
     }
 
     @Override
+    public String updateAddress(String address, long id) {
+        List<Student> all = getAll();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).getId() == id) {
+                all.get(i).setAddress(address);
+            }
+        }
+        return address;
+    }
+
+    @Override
+    public String updateNationality(String nat, long id) {
+        List<Student> all = getAll();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).getId() == id) {
+                all.get(i).setNationality(nat);
+            }
+        }
+        return nat;
+    }
+
+    @Override
+    public String updateCountry(String country, long id) {
+        List<Student> all = getAll();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).getId() == id) {
+                all.get(i).setCountry(country);
+            }
+        }
+        return country;
+    }
+
+    @Override
+    public int updatePhone(int phone, long id) {
+        List<Student> all = getAll();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).getId() == id) {
+                all.get(i).setPhone(phone);
+            }
+        }
+        return phone;
+    }
+
+    @Override
+    public String updateBirth(String birth, long id) {
+        List<Student> all = getAll();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).getId() == id) {
+                all.get(i).setBornDate(birth);
+            }
+        }
+        return birth;
+    }
+
+    @Override
+    public String updateCity(String city, long id) {
+        List<Student> all = getAll();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).getId() == id) {
+                all.get(i).setCity(city);
+            }
+        }
+        return city;
+    }
+
+    @Override
+    public boolean updateWarrior(boolean b, long id) {
+        List<Student> all = getAll();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).getId() == id) {
+                all.get(i).setWarrior(b);
+            }
+        }
+        return b;
+    }
+
+    @Override
     public boolean contains(Student student) {
         List<Student> all = getAll();
         for (int i = 0; i < all.size(); i++) {
             if (all.get(i).equals(student)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean contains(long id) {
+        List<Student> all = getAll();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).getId() == id) {
                 return true;
             }
         }

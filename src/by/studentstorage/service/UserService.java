@@ -39,6 +39,14 @@ public class UserService {
         throw new UserNotFoundException();
     }
 
+    public String updateLogin(String login, long id){
+        if (inMemoryUserStorage.contains(id)){
+            inMemoryUserStorage.updateLogin(login, id);
+            return login;
+        }
+        throw new UserNotFoundException();
+    }
+
     public String updateName(String name, long id) throws UserNotFoundException {
         if (inMemoryUserStorage.contains(id)) {
             inMemoryUserStorage.updateName(name, id);
