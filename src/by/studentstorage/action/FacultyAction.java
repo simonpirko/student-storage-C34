@@ -1,10 +1,7 @@
 package by.studentstorage.action;
 
-import by.studentstorage.console.ConsoleApplication;
 import by.studentstorage.console.ConsoleReader;
 import by.studentstorage.console.ConsoleWriter;
-import by.studentstorage.domain.Faculty;
-import by.studentstorage.domain.Student;
 import by.studentstorage.service.FacultyService;
 import by.studentstorage.service.UserService;
 import by.studentstorage.validator.FacultyValidator;
