@@ -1,6 +1,5 @@
 package by.studentstorage.action;
 
-import by.studentstorage.console.ConsoleApplication;
 import by.studentstorage.console.ConsoleReader;
 import by.studentstorage.console.ConsoleWriter;
 import by.studentstorage.domain.*;

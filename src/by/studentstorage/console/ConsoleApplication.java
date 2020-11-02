@@ -1,10 +1,12 @@
 package by.studentstorage.console;
 
 import by.studentstorage.action.*;
-import by.studentstorage.domain.*;
+import by.studentstorage.domain.Role;
+import by.studentstorage.domain.Session;
+import by.studentstorage.domain.Student;
 
 public class ConsoleApplication {
-    private int applicationState = 1;
+    private String applicationState = "Guest";
     private ConsoleReader consoleReader = new ConsoleReader();
     private ConsoleWriter consoleWriter = new ConsoleWriter();
     private UserAction userAction = new UserAction();
@@ -16,186 +18,192 @@ public class ConsoleApplication {
     public static Session session;
 
     public void run() {
-        while (applicationState != 0) {
+        while (!applicationState.equals("Stop")) {
             menu();
         }
     }
 
     private void menu() {
-        if (applicationState == 1) {
+        if (applicationState.equals("Guest")) {
             showGuestMenu();
-            switch (consoleReader.readInt()) {
-                case 0:
-                    applicationState = 0;
+            switch (consoleReader.readString()) {
+                case "0":
+                    applicationState = "Stop";
                     break;
-                case 1:
+                case "1":
                     userAction.registration();
                     break;
-                case 2:
+                case "2":
                     userAction.authorization();
-                    applicationState = 2;
+                    RoleDefiner();
                     break;
                 default:
                     consoleWriter.writeString("Wrong input!");
             }
-        } else {
-            if (applicationState == 9) {
-                studentUpdaterMenu();
-                switch (consoleReader.readInt()) {
-                    case 0 -> applicationState = 7;
-                    case 1 -> moderatorAction.updateLogin();
-                    case 2 -> moderatorAction.updateName();
-                    case 3 -> moderatorAction.updateSurname();
-                    case 4 -> moderatorAction.updateEmail();
-                    case 5 -> moderatorAction.updatePass();
-                    case 6 -> moderatorAction.updateAddress();
-                    case 7 -> moderatorAction.updateCity();
-                    case 8 -> moderatorAction.updateNationality();
-                    case 9 -> moderatorAction.updateCountry();
-                    case 10 -> moderatorAction.updatePhone();
-                    case 11 -> moderatorAction.updateGroup();
-                    case 12 -> moderatorAction.updateFaculty();
-                    case 13 -> moderatorAction.updateCourse();
-                    case 14 -> moderatorAction.updateBirth();
-                    case 15 -> moderatorAction.updateEducationForm();
-                    case 16 -> moderatorAction.updateWarrior();
-                    default -> consoleWriter.writeString("Wrong input!");
-                }
+        }
+        if (applicationState.equals("Admin")){
+            showAdminMenu();
+            switch (consoleReader.readString()) {
+                case "0":
+                    applicationState = "Stop";
+                    break;
+                case "1":
+                    userAction.logout();
+                    applicationState = "Guest";
+                    break;
+                case "2":
+                    adminAction.addTeacher();
+                    break;
+                case "3":
+                    adminAction.addLesson();
+                    break;
+                case "4":
+                    applicationState = "Schedule";
+                    break;
+                case "5":
+                    //remover
+                    break;
+                case "6":
+                    applicationState = "Updater";
+                    break;
+                case "7":
+                    adminAction.showAll();
+                    break;
+                default:
+                    consoleWriter.writeString("Wrong input!");
             }
-            if (session != null && session.getCurrentUser().getRole().equals(Role.TEACHER)) {
-                applicationState = 5;
-                showTeacherMenu();
-                switch (consoleReader.readInt()) {
-                    case 0:
-                        userAction.logout();
-                        applicationState = 1;
-                        break;
-                    case 1:
-                        teacherAction.addLesson();
-                        break;
-                    case 2:
-                        lessonAction.showAllLessons();
-                        break;
-                    default:
-                        consoleWriter.writeString("Wrong input!");
+        }
+        if (applicationState.equals("Moderator")){
+            showModeratorMenu();
+            switch (consoleReader.readString()) {
+                case "0" -> applicationState = "Stop";
+                case "1" -> {
+                    userAction.logout();
+                    applicationState = "Guest";
                 }
+                case "2" -> applicationState = "Schedule";
+                case "3" -> applicationState = "Updater";
+                case "4" -> adminAction.showAll();
+                default -> consoleWriter.writeString("Wrong input!");
             }
-            if (session.getCurrentUser().getRole().equals(Role.ADMIN) && applicationState != 9) {
-                applicationState = -1;
-                showAdminMenu();
-                switch (consoleReader.readInt()) {
-                    case 0:
-                        applicationState = 0;
-                        break;
-                    case 1:
-                        userAction.logout();
-                        applicationState = 1;
-                        break;
-                    case 2:
-                        adminAction.addTeacher();
-                        break;
-                    case 3:
-                        adminAction.addLesson();
-                        break;
-                    case 4:
-                        applicationState = 6;
-                        break;
-                    case 5:
-                        //remover
-                        break;
-                    case 6:
-                        applicationState = 7;
-                        break;
-                    case 7:
-                        adminAction.showAll();
-                        break;
-                    default:
-                        consoleWriter.writeString("Wrong input!");
+        }
+        if (applicationState.equals("Teacher")) {
+            showTeacherMenu();
+            switch (consoleReader.readString()) {
+                case "0":
+                    userAction.logout();
+                    applicationState = "Guest";
+                    break;
+                case "1":
+                    teacherAction.addLesson();
+                    break;
+                case "2":
+                    lessonAction.showAllLessons();
+                    break;
+                default:
+                    consoleWriter.writeString("Wrong input!");
+            }
+        }
+        if (applicationState.equals("Student")) {
+            showStudentMenu();
+            switch (consoleReader.readString()) {
+                case "0" -> {
+                    userAction.logout();
+                    applicationState = "Guest";
                 }
+                case "1" -> applicationState = "EditStudentMenu";
+                case "2" -> applicationState = "Profile";
+                default -> consoleWriter.writeString("Wrong input!");
             }
-            if (session != null && session.getCurrentUser().getRole().equals(Role.MODERATOR) && applicationState != 9) {
-                applicationState = -2;
-                showModeratorMenu();
-                switch (consoleReader.readInt()) {
-                    case 0 -> applicationState = 0;
-                    case 1 -> {
-                        userAction.logout();
-                        applicationState = 1;
+        }
+        if (applicationState.equals("EditStudentMenu")){
+            showEditStudentMenu();
+            switch (consoleReader.readString()) {
+                case "0" -> applicationState = "Student";
+                case "1" -> userAction.changeName();
+                case "2" -> userAction.changeSurname();
+                case "3" -> userAction.changePassword();
+                case "4" -> userAction.changeEmail();
+                case "5" -> studentAction.changeCourse();
+                case "6" -> studentAction.changeFaculty();
+                default -> consoleWriter.writeString("Wrong input!");
+            }
+        }
+        if (applicationState.equals("Profile")){
+            showUserProfile();
+            if (consoleReader.readString().equals("0")) {
+                applicationState = "Student";
+            }else{
+                consoleWriter.writeString("Wrong input!");
+            }
+        }
+        if (applicationState.equals("Updater")){
+            showUpdaterMenu();
+            switch (consoleReader.readString()) {
+                case "0" -> {
+                    if (ConsoleApplication.session.getCurrentUser().getRole().equals(Role.MODERATOR)) {
+                        applicationState = "Moderator";
+                    } else {
+                        applicationState ="Admin";
                     }
-                    case 2 -> applicationState = 6;
-                    case 3 -> applicationState = 7;
-                    case 4 -> adminAction.showAll();
-                    default -> consoleWriter.writeString("Wrong input!");
                 }
+                case "1" -> applicationState = "TeacherUpdater";
+                case "2" -> applicationState = "StudentUpdater";
+                default -> consoleWriter.writeString("Wrong input!");
             }
-            if (applicationState == 7) {
-                showUpdaterMenu();
-                switch (consoleReader.readInt()) {
-                    case 0 -> {
-                        if (ConsoleApplication.session.getCurrentUser().getRole().equals(Role.MODERATOR)) {
-                            applicationState = -2;
-                        } else {
-                            applicationState = -1;
-                        }
-                    }
-                    case 1 -> applicationState = 8;
-                    case 2 -> applicationState = 9;
-                    default -> consoleWriter.writeString("Wrong input!");
-                }
+        }
+        if (applicationState.equals("TeacherUpdater")){
+            teacherUpdaterMenu();
+            switch (consoleReader.readString()) {
+                case "0" -> applicationState = "Updater";
+                case "1" -> moderatorAction.updateLogin();
+                case "2" -> moderatorAction.updateName();
+                case "3" -> moderatorAction.updateSurname();
+                case "4" -> moderatorAction.updateEmail();
+                case "5" -> moderatorAction.updatePass();
+                case "6" -> moderatorAction.updateRank();
+                case "7" -> moderatorAction.updatePosition();
+                case "8" -> moderatorAction.updateDepartment();
+                default -> consoleWriter.writeString("Wrong input!");
             }
-            if (applicationState == 6) {
-                lessonAction.showAllLessons();
-                consoleWriter.writeString("0 - Back");
-                if (consoleReader.readInt() == 0) {
-                    applicationState = -1;
-                }
+        }
+        if (applicationState.equals("StudentUpdater")){
+            studentUpdaterMenu();
+            switch (consoleReader.readString()) {
+                case "0" -> applicationState = "Updater";
+                case "1" -> moderatorAction.updateLogin();
+                case "2" -> moderatorAction.updateName();
+                case "3" -> moderatorAction.updateSurname();
+                case "4" -> moderatorAction.updateEmail();
+                case "5" -> moderatorAction.updatePass();
+                case "6" -> moderatorAction.updateAddress();
+                case "7" -> moderatorAction.updateCity();
+                case "8" -> moderatorAction.updateNationality();
+                case "9" -> moderatorAction.updateCountry();
+                case "10" -> moderatorAction.updatePhone();
+                case "11" -> moderatorAction.updateGroup();
+                case "12" -> moderatorAction.updateFaculty();
+                case "13" -> moderatorAction.updateCourse();
+                case "14" -> moderatorAction.updateBirth();
+                case "15" -> moderatorAction.updateEducationForm();
+                case "16" -> moderatorAction.updateWarrior();
+                default -> consoleWriter.writeString("Wrong input!");
             }
-            if (session != null && applicationState == 2) {
-                showUserMenu();
-                switch (consoleReader.readInt()) {
-                    case 0 -> {
-                        userAction.logout();
-                        applicationState = 1;
-                    }
-                    case 1 -> applicationState = 3;
-                    case 2 -> applicationState = 4;
-                    default -> consoleWriter.writeString("Wrong input!");
-                }
-            }
-            if (applicationState == 3) {
-                showEditStudentMenu();
-                switch (consoleReader.readInt()) {
-                    case 0 -> applicationState = 2;
-                    case 1 -> userAction.changeName();
-                    case 2 -> userAction.changeSurname();
-                    case 3 -> userAction.changePassword();
-                    case 4 -> userAction.changeEmail();
-                    case 5 -> studentAction.changeCourse();
-                    case 6 -> studentAction.changeFaculty();
-                    default -> consoleWriter.writeString("Wrong input!");
-                }
-            }
-            if (applicationState == 4) {
-                showUserProfile();
-                if (consoleReader.readInt() == 0) {
-                    applicationState = 2;
-                }
-            }
-            if (applicationState == 8) {
-                teacherUpdaterMenu();
-                switch (consoleReader.readInt()) {
-                    case 0 -> applicationState = 7;
-                    case 1 -> moderatorAction.updateLogin();
-                    case 2 -> moderatorAction.updateName();
-                    case 3 -> moderatorAction.updateSurname();
-                    case 4 -> moderatorAction.updateEmail();
-                    case 5 -> moderatorAction.updatePass();
-                    case 6 -> moderatorAction.updateRank();
-                    case 7 -> moderatorAction.updatePosition();
-                    case 8 -> moderatorAction.updateDepartment();
-                    default -> consoleWriter.writeString("Wrong input!");
-                }
-            }
+        }
+    }
+
+    private void RoleDefiner() {
+        if (ConsoleApplication.session.getCurrentUser().getRole().equals(Role.ADMIN)){
+            applicationState = "Admin";
+        }
+        if (ConsoleApplication.session.getCurrentUser().getRole().equals(Role.MODERATOR)){
+            applicationState = "Moderator";
+        }
+        if (ConsoleApplication.session.getCurrentUser().getRole().equals(Role.TEACHER)){
+            applicationState = "Teacher";
+        }
+        if (ConsoleApplication.session.getCurrentUser().getRole().equals(Role.STUDENT)){
+            applicationState = "Student";
         }
     }
 
@@ -205,7 +213,7 @@ public class ConsoleApplication {
         consoleWriter.writeString("2 - Authorization");
     }
 
-    private void showUserMenu() {
+    private void showStudentMenu() {
         consoleWriter.writeString("0 - Log out");
         consoleWriter.writeString("1 - Edit profile");
         consoleWriter.writeString("2 - My profile");
@@ -270,7 +278,6 @@ public class ConsoleApplication {
         consoleWriter.writeString("0 - Back");
         consoleWriter.writeString("1 - Update teacher");
         consoleWriter.writeString("2 - Update student");
-        consoleWriter.writeString("3 - Update lesson");
     }
 
     private void teacherUpdaterMenu() {
@@ -305,4 +312,3 @@ public class ConsoleApplication {
         consoleWriter.writeString("16 - Update warrior");
     }
 }
-
