@@ -16,7 +16,22 @@ public class ModeratorAction {
 
     public void updateLogin() {
         consoleWriter.writeString("Please enter user's id");
-        int id = consoleReader.readInt();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
+
         User userByLogin = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's login");
         String newLogin = consoleReader.readString();
@@ -25,7 +40,21 @@ public class ModeratorAction {
 
     public void updateName() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's name");
         String name = consoleReader.readString();
@@ -34,7 +63,21 @@ public class ModeratorAction {
 
     public void updateSurname() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's surname");
         String surname = consoleReader.readString();
@@ -43,7 +86,21 @@ public class ModeratorAction {
 
     public void updateEmail() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's e-mail");
         String email = consoleReader.readString();
@@ -52,7 +109,20 @@ public class ModeratorAction {
 
     public void updatePass() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's password");
         String pass = consoleReader.readString();
@@ -61,7 +131,21 @@ public class ModeratorAction {
 
     public void updateAddress() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's address");
         String address = consoleReader.readString();
@@ -70,7 +154,21 @@ public class ModeratorAction {
 
     public void updateCity() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's City");
         String city = consoleReader.readString();
@@ -79,7 +177,21 @@ public class ModeratorAction {
 
     public void updateNationality() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's nationality");
         String nat = consoleReader.readString();
@@ -88,7 +200,21 @@ public class ModeratorAction {
 
     public void updateCountry() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's country");
         String coutry = consoleReader.readString();
@@ -97,7 +223,21 @@ public class ModeratorAction {
 
     public void updatePhone() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's phone");
         int phone = consoleReader.readInt();
@@ -107,7 +247,21 @@ public class ModeratorAction {
 
     public void updateGroup() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's gropu");
         String group = consoleReader.readString();
@@ -116,7 +270,21 @@ public class ModeratorAction {
 
     public void updateFaculty() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's faculty");
         String faculty = consoleReader.readString();
@@ -125,7 +293,21 @@ public class ModeratorAction {
 
     public void updateCourse() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's course number");
         int course = consoleReader.readInt();
@@ -134,16 +316,94 @@ public class ModeratorAction {
 
     public void updateBirth() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
-        consoleWriter.writeString("Please enter new user's date of birth");
-        String birth = consoleReader.readString();
+        consoleWriter.writeString("Please enter new user's date of birth:number of day");
+
+        int numDay;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            numDay=consoleReader.readInt();
+            if(numDay<1 || numDay>31){
+                consoleWriter.writeString("Error: input numbers >0 and <32");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
+
+
+        consoleWriter.writeString("Write date:input number of month");
+        int numMonth;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            numMonth=consoleReader.readInt();
+            if(numMonth<1 || numMonth>12){
+                consoleWriter.writeString("Error: input numbers >0 and <13");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
+        consoleWriter.writeString("Write date:input number of year");
+        int numYear;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            numYear=consoleReader.readInt();
+            if(numYear<1900 || numYear>2100){
+                consoleWriter.writeString("Error: input numbers >1899 and <2101");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
+        String birth = numDay+"/"+numMonth+"/"+numYear;
         studentService.updateBirth(birth, userByID.getId());
     }
 
     public void updateEducationForm() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's form of education");
         String education = consoleReader.readString();
@@ -153,38 +413,152 @@ public class ModeratorAction {
 
     public void updateWarrior() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter users's suitability for the army.");
-        consoleWriter.writeString("Where 0 - is not suitable and 1 - is suitable.");
-        if (consoleReader.readInt() == 0) {
-            studentService.updateWarrior(false, userByID.getId());
-        } else {
-            studentService.updateWarrior(true, userByID.getId());
+        consoleWriter.writeString("1-Is not suitable \n2-Is suitable");
+        int hasArmy;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers:1 or 2");
+            }
+            hasArmy = consoleReader.readInt();
+            if(hasArmy<1 || hasArmy>2){
+                consoleWriter.writeString("Error: input numbers 1 or 2");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
+        switch (hasArmy){
+            case 1: studentService.updateWarrior(false, userByID.getId()); break;
+            case 2: studentService.updateWarrior(true, userByID.getId()); break;
         }
     }
 
     public void updateRank() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's rank");
-        String rank = consoleReader.readString().toUpperCase();
-        teacherService.updateRank(Rank.valueOf(rank), (Teacher) userByID);
+        consoleWriter.writeString("1-PROFESSOR \n2-DOCENT");
+        int rank;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers:1 or 2");
+            }
+            rank=consoleReader.readInt();
+            if(rank<1 || rank>2){
+                consoleWriter.writeString("Error: input numbers 1 or 2");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
+        Rank rank1;
+        switch (rank){
+            case 1: rank1=Rank.PROFESSOR; break;
+            case 2: rank1=Rank.DOCENT; break;
+            default: rank1=null;
+        }
+
+        teacherService.updateRank(rank1, (Teacher) userByID);
     }
 
     public void updatePosition() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's position");
-        String position = consoleReader.readString().toUpperCase();
-        teacherService.updatePosition(Position.valueOf(position), (Teacher) userByID);
+        int position;
+        consoleWriter.writeString("1-ASSISTANT \n2-SENIOR");
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers:1 or 2");
+            }
+            position=consoleReader.readInt();
+            if(position<1 || position>2){
+                consoleWriter.writeString("Error: input numbers 1 or 2");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
+        Position position1;
+        switch (position){
+            case 1: position1=Position.ASSISTANT; break;
+            case 2: position1=Position.SENIOR; break;
+            default: position1=null;
+        }
+
+        teacherService.updatePosition(position1, (Teacher) userByID);
     }
 
     public void updateDepartment() {
         consoleWriter.writeString("Please enter user's ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         User userByID = userService.getUserById(id);
         consoleWriter.writeString("Please enter new user's department");
         String dep = consoleReader.readString();

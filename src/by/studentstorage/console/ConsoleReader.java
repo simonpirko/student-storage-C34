@@ -20,4 +20,11 @@ public class ConsoleReader {
     public int readInt(){
         return scanner.nextInt();
     }
+
+    public boolean hasInt() {
+        if (scanner.hasNextInt()){
+            return true;
+        }
+        return false;
+    }
 }

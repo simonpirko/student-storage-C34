@@ -37,7 +37,21 @@ public class CountryAction {
 
     public boolean removeCountry() {
         consoleWriter.writeString("Please enter user ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         userService.getUserById(id);
         countryService.remove(id);
         return true;
