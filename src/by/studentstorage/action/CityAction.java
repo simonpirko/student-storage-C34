@@ -37,7 +37,22 @@ public class CityAction {
 
     public boolean removeCity(){
         consoleWriter.writeString("Please enter user ID");
-        long id = consoleReader.readLong();
+        long id;
+        do{
+            while(!consoleReader.hasInt()){
+                String input=consoleReader.readString();
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            id=consoleReader.readLong();
+            if(id<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         userService.getUserById(id);
         cityService.remove(id);
         return true;

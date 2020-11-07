@@ -15,7 +15,21 @@ public class StudentAction {
 
     public String changeCourse(){
         consoleWriter.writeString("Please enter your course");
-        int course = consoleReader.readInt();
+        int course;
+        do{
+            while(!consoleReader.hasInt()){
+                consoleWriter.writeString("Error: input only numbers");
+            }
+            course=consoleReader.readInt();
+            if(course<=0){
+                consoleWriter.writeString("Error: input numbers >0");
+            }
+            else {
+                break;
+            }
+
+        } while(true);
+
         Student student = (Student) ConsoleApplication.session.getCurrentUser();
         if (CourseValidator.validCourse(course)){
             studentService.updateCourse(course, student);
